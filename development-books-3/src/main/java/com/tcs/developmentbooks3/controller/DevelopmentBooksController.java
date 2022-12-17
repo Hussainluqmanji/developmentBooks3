@@ -1,17 +1,21 @@
 package com.tcs.developmentbooks3.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.tcs.developmentbooks3.service.BookService;
 
 @RestController
 public class DevelopmentBooksController {
 
-    @GetMapping("/getAllBooks")
-    public List<String> getAllBooks() {
-        return Arrays.asList("Clean Code", "The Clean Coder", "Clean Architecture",
-                "Test Driven Development by Example", "Working Effectively With Legacy Code");
-    }
+	@Autowired
+	BookService service;
+
+	@GetMapping("/getAllBooks")
+	public List<String> getAllBooks() {
+		return service.getAllBooks();
+	}
 }
