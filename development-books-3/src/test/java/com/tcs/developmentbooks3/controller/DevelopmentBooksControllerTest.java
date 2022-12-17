@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import com.tcs.developmentbooks3.model.BookRequest;
 import com.tcs.developmentbooks3.model.Books;
+import com.tcs.developmentbooks3.service.BookService;
 
 class DevelopmentBooksControllerTest {
 
@@ -17,12 +18,13 @@ class DevelopmentBooksControllerTest {
 	@BeforeEach
 	public void setUp() {
 		controller = new DevelopmentBooksController();
+		controller.service = new BookService();
 	}
 
 	@Test
 	void getBookNameShouldReturnNameOfTheBook() {
 		List<Books> result = controller.getAllBooks();
-		assertEquals("Clean Code", result.get(0));
+		assertEquals("Clean Code", result.get(0).getTitle());
 	}
 
 	@Test
